@@ -1,0 +1,56 @@
+/* styles.css */
+.main-nav {
+    display: flex;
+    background-color: midnightblue;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;
+    color: white;
+  }
+  
+  .main-nav a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: midnightblue;
+    color: white;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 5rem;
+  }
+  
+  .creative {
+    color: midnightblue;
+  }
+  
+  .form-box {
+    width: 100%;
+    border: 5px solid;
+    margin: 0;
+    padding: 5vw;
+    position: relative;
+  }
+  
+  .error {
+    color: red;
+  }
+  
+  .button-container {
+    padding-right: 25px;
+    padding-top: 25px;
+  }
+  
+  .button-container2 {
+    margin-top: 50px;
+    padding-right: 25px;
+    padding-top: 25px;
+  }
+  
