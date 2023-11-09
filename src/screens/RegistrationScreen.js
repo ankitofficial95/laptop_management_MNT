@@ -1,6 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import { registerUser } from '../slices/registrationSlice';
+import { useNavigate } from "react-router-dom";
+
 
 const updateLocalStorage = (data) => {
   const storedData = JSON.parse(localStorage.getItem("registrations")) || [];
@@ -8,9 +12,9 @@ const updateLocalStorage = (data) => {
   localStorage.setItem("registrations", JSON.stringify(storedData));
 };
 
-const Registration = () => {
-  const [registrationSuccess, setRegistrationSuccess] = useState(false);
-
+const RegistrationScreen = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const initialValues = {
     name: "",
     email: "",
@@ -44,13 +48,15 @@ const Registration = () => {
   });
 
   const alertOnRegistration = () => {
-    setRegistrationSuccess(true);
+    alert("Registration successful !!!")
   };
 
   const onSubmit = (values, props) => {
-    console.log("data:", values);
+    //console.log("data:", values);
+    console.log('user registeration called');
     alertOnRegistration();
     updateLocalStorage(values);
+    dispatch(registerUser(values));
     props.resetForm();
   };
 
@@ -62,6 +68,7 @@ const Registration = () => {
 
   return (
     <div className="container">
+         <h2>Registration Form</h2>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -102,24 +109,30 @@ const Registration = () => {
                 className="error"
               />
             </div>
-
+            <br></br>
             <div className="button-container">
               <button className="btn btn-primary" type="submit">
                 Register
               </button>
+
+              <br></br>
+                <br></br>
+                <small class="text-muted">Already a member ? Login here</small>
+                <br></br>
+                <button
+                  className="btn btn-primary mt-2"
+                  onClick={() => {
+                    navigate("/login");
+                  }}
+                >
+                  Login
+                </button>
             </div>
           </Form>
         )}
       </Formik>
-
-      <div className="registrationSuccess">
-        {registrationSuccess && (
-          <div className="alert alert-success" role="alert">
-            <p>Login Successful</p>
-          </div>
-        )}
-      </div>
     </div>
   );
 };
-export default Registration;
+
+export default RegistrationScreen;

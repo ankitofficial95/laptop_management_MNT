@@ -1,37 +1,78 @@
-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: midnightblue;
-  color: white;
+
+.title {
   text-align: center;
 }
-h1 {
-  font-size: 5rem;
+
+.btn-space {
+  margin-right: 200px;
 }
-.creative {
-  color: midnightblue;
+
+.afterAlert {
+  margin-top: 30px;
 }
-.form-box {
-  min-width: 100%;
-  border: 5px;
-  margin: 0vw;
-  padding: 5vw;
-  position: relative;
+
+.btn-register {
+  margin-top: 10px;
 }
+
 .error {
-  color: red;
+  color: crimson;
 }
 
-.button-container{
-  padding-right: 25px;
-  padding-top: 25px;
+.grid-container {
+  padding: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.user-card {
+  padding: auto;
+  text-align: left;
+}
+
+.axios-btn {
+  align-content: center;
+}
+
+.footer {
+  color: darkred;
+  position: fixed;
+  left: 45%;
+  top: 90%;
 }
 
 
-.button-container2{
-  margin-top: 50px;
-  padding-right: 25px;
-  padding-top: 25px;
+img{
+  height : 200px;
+  width: 200px;
+}
+
+.container{
+    margin-top: 6%;
+    width: 20%;
+}
+
+.laptop-registraion-container{
+  width: 100%;
+  padding: 20px;
+}
+
+.laptop-form{
+  display: grid;
+}
+
+
+.fixed-sidebar {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  bottom: 0;
+  width: 200px;
+  background-color: transparent; 
+  overflow-y: auto;
+}
+
+
+.dashboard-content{
+  padding-left: 200px;
 }

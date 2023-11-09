@@ -1,11 +1,8 @@
 import React from "react";
-
 export const Footer = () => {
   return (
-    <div>
-      <footer>
-        <p>© 2023 Website from MindNerves pvt Ltd</p>
-      </footer>
-    </div>
+  <div>
+    <p className="col-md-12 d-flex align-items-center justify-content-center fixed-bottom bg-info bg-gradient mb-0">© 2023 Company, MindNerves Technology </p>
+  </div>
   );
 };

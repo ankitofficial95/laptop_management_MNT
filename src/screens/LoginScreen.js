@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../slices/authSlice";
 
-const Login = () => {
-  const [loginSuccess, setloginSuccess] = useState(false);
+export const LoginScreen = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const initialValues = {
     email: "",
@@ -30,64 +32,64 @@ const Login = () => {
     );
 
     if (foundUser) {
-      console.log("Login successful");
-      setloginSuccess(true)
+      dispatch(loginUser(foundUser));
+      //console.log("User data dispatched:", foundUser);
+      alert("Login Successfull !!!");
+      navigate("/dashboard");
     } else {
-      console.log(" failed login");
+      alert("Login failed");
     }
     props.resetForm();
   };
 
   return (
     <div className="container">
+      <h2>Login form</h2>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
         {() => (
-          <Form>
+          <Form className="login-form">
             <div>
               <label className="form-label">Email</label>
-              <Field type="email" name="email" className="form-control" />
+              <Field
+                type="email"
+                name="email"
+                className="form-control small-input"
+              />
               <ErrorMessage name="email" component="div" className="error" />
             </div>
             <div>
               <label className="form-label">Password</label>
-              <Field type="password" name="password" className="form-control" />
+              <Field
+                type="password"
+                name="password"
+                className="form-control small-input"
+              />
               <ErrorMessage name="password" component="div" className="error" />
             </div>
 
-            <div className="button-container">
-              <button className="btn btn-primary" type="submit">
-                Login
-              </button>
-              <span></span>
-              <button className="btn btn-primary"
-                onClick={() => {
-                  navigate("/register");
-                }}
-              >
-                Register
-              </button>
-            </div>
+            <br></br>
+            <button className="btn btn-primary" type="submit">
+              Login
+            </button>
+            <br></br>
+            <br></br>
+            <small class="text-muted">Not a member ? Register here</small>
+            <br></br>
+            <button
+              className="btn btn-primary mt-2"
+              onClick={() => {
+                navigate("/register");
+              }}
+            >
+              Register
+            </button>
           </Form>
         )}
       </Formik>
-
-
-      <div className="registrationSuccess">
-        {loginSuccess && (
-          <div className="alert alert-success" role="alert">
-            <h4 className="alert-heading">Well done!</h4>
-            <p>Login Successful</p>
-          </div>
-        )}
-      </div>
-
-
     </div>
   );
 };
-
-export default Login;
