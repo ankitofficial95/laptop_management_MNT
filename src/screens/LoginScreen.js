@@ -33,7 +33,6 @@ export const LoginScreen = () => {
 
     if (foundUser) {
       dispatch(loginUser(foundUser));
-      //console.log("User data dispatched:", foundUser);
       alert("Login Successfull !!!");
       navigate("/dashboard");
     } else {
@@ -45,6 +44,8 @@ export const LoginScreen = () => {
   return (
     <div className="container">
       <h2>Login form</h2>
+      <hr></hr>
+
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}

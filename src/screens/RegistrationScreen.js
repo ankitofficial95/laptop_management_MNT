@@ -69,6 +69,8 @@ const RegistrationScreen = () => {
   return (
     <div className="container">
          <h2>Registration Form</h2>
+         <hr></hr>
+
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}

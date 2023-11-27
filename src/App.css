@@ -35,7 +35,7 @@
 }
 
 .footer {
-  color: darkred;
+  color: wheat;
   position: fixed;
   left: 45%;
   top: 90%;
@@ -63,16 +63,38 @@ img{
 
 
 .fixed-sidebar {
+  padding-top: 80px;
   position: fixed;
-  top: 60px;
+  top: 50px;
   left: 0;
   bottom: 0;
-  width: 200px;
-  background-color: transparent; 
-  overflow-y: auto;
+  background-color: transparent;
 }
 
 
 .dashboard-content{
-  padding-left: 200px;
+  padding-left: 50px;
 }
+
+
+.nav-item{
+  font-size: larger;
+}
+
+
+.radio-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.reduced-font {
+  font-size: 14px; 
+  color: white;
+}
+
+body{
+  background-color: rgba(50, 115, 220, 0.3);
+}
+
+

@@ -14,7 +14,7 @@ export const Navbar = () => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-info bg-gradient">
+      <nav className="navbar navbar-expand-lg navbar-light bg-info">
         <a className="navbar-brand" href="/home">
           Mindnerves
         </a>
@@ -32,20 +32,12 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <NavLink className='nav-link' to="/home">Home</NavLink>
+              <NavLink className='btn btn-outline-light rounded-pill mr-3' to="/home">Home</NavLink>
             </li>
+  
             <li className="nav-item">
-              <NavLink className='nav-link' to="/about">About</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className='nav-link' to="/contact">Contact</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className='nav-link' to="/dashboard">Dashboard</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className='nav-link' to="/fetchapi">FetchAPI</NavLink>
-            </li>
+              <NavLink className='btn btn-outline-light rounded-pill mr-3' to="/dashboard">Dashboard</NavLink>
+            </li>  
           </ul>
 
           {user ? (

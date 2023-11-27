@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchLaptops = createAsyncThunk("laptops/fetchLaptops", async () => {
   try {
@@ -9,7 +9,12 @@ export const fetchLaptops = createAsyncThunk("laptops/fetchLaptops", async () =>
   }
 });
 
-export const editLaptopDetails = createAction("laptops/editLaptopDetails");
+export const editLaptopDetails = createAsyncThunk(
+  "laptops/editLaptopDetails",
+  async (updatedData) => {
+    return updatedData;
+  }
+);
 
 const laptopSlice = createSlice({
   name: "laptops",
@@ -21,19 +26,27 @@ const laptopSlice = createSlice({
     },
 
     editLaptop: (state, action) => {
-      const { lapSerialNumber, lapName } = action.payload;
-      return state.map((laptop) => {
-        if (laptop.lapSerialNumber === lapSerialNumber) {
-          return { ...laptop, lapName }; // Update only lapName
-        }
-        return laptop;
-      });
+      const updatedData = action.payload;
+      const indexToUpdate = state.findIndex((laptop) => laptop.id === updatedData.id);
+      if (indexToUpdate !== -1) {
+        state[indexToUpdate] = { ...state[indexToUpdate], ...updatedData };
+      }
     },
   },
+
   extraReducers: (builder) => {
     builder.addCase(fetchLaptops.fulfilled, (state, action) => {
       return action.payload;
     });
+
+    builder.addCase(editLaptopDetails.fulfilled, (state, action) => {
+      const updatedData = action.payload;
+      const indexToUpdate = state.findIndex((laptop) => laptop.id === updatedData.id);
+      if (indexToUpdate !== -1) {
+        state[indexToUpdate] = { ...state[indexToUpdate], ...updatedData };
+      }
+    });
+
   },
 });
 

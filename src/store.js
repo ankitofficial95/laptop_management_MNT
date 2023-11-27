@@ -4,15 +4,16 @@ import authReducer from './slices/authSlice';                   // slice for log
 import userReducer from './slices/userSlice';                   // slice for users list (from API)
 import laptopUserReducer from './slices/laptopRegisterSlice';   // slice for laptop user registration
 import laptopReducer from './slices/laptopSlice';               // slice for laptop list
+import laptopEditReducer from './slices/laptopEditSlice'; 
 
 const store = configureStore({
-  reducer: {
+   reducer:{
     registration: registrationReducer,
     auth: authReducer,
     users: userReducer,
     laptopusers: laptopUserReducer,
     laptops: laptopReducer, 
+    laptopEdit: laptopEditReducer,
   },
 });
-
 export default store;

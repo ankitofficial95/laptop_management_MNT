@@ -5,6 +5,7 @@ const registrationSlice = createSlice({
   initialState: {
     user: null,
   },
+  
   reducers: {
     registerUser: (state, action) => {
       state.user = action.payload;

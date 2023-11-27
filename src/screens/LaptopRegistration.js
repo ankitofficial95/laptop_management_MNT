@@ -3,12 +3,15 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { registerLaptopUser } from "../slices/laptopRegisterSlice";
+import { Alert } from "react-bootstrap";
 
 
 const updateLocalStorage = (data) => {
   console.log('update storage called for new laptop registration !!!');
   const storedData = JSON.parse(localStorage.getItem("laptopRegistrations")) || [];
-  data.id = storedData.length + 1; // Generate a unique ID
+  const maxId = storedData.reduce((max, laptop) => (laptop.id > max ? laptop.id : max), 0);
+  data.id = maxId + 1;
+
   storedData.push(data);
   localStorage.setItem("laptopRegistrations", JSON.stringify(storedData));
   console.log('local storage updated with new laptop registration !!!');
@@ -39,7 +42,8 @@ const lapBrand = [
   "Sony VAIO",
 ];
 
-const operatingSystems = ["Windows", "macOS", "Linux"];
+const operatingSystems = ["Windows", "macOS", "Linux", "iOS", "Android", "Ubuntu", "Fedora", "Chrome OS", "FreeBSD"];
+
 const cpuTypes = [
   "Intel Core i9",
   "Intel Core i7",
@@ -103,11 +107,6 @@ const ramSizes = [
   "256 GB",
   "512 GB",
   "1 TB",
-  "2 TB",
-  "4 TB",
-  "8 TB",
-  "16 TB",
-  "32 TB",
 ];
 
 const LaptopRegistration = () => {
@@ -133,7 +132,8 @@ const LaptopRegistration = () => {
   });
 
   const alertOnRegistration = () => {
-    alert("Laptop Registration successful !!!");
+    <Alert>Laptop Registration successful !!!</Alert>
+    //alert("Laptop Registration successful !!!");
   };
 
   const onSubmit = async (values, props) => {
@@ -153,6 +153,7 @@ const LaptopRegistration = () => {
   if (!user) {
     return (
       <div>
+        <hr></hr>
         <p className="lead text-center">
           Login first to see the Laptop Services !!
         </p>
@@ -162,7 +163,8 @@ const LaptopRegistration = () => {
 
   return (
 <div>
-<p className="lead text-start px-2"> Laptop Registration </p>
+<p className="lead text-center">Laptop Registration</p>
+  <hr></hr>
   <Formik
     initialValues={initialValues}
     validationSchema={validationSchema}
@@ -174,13 +176,13 @@ const LaptopRegistration = () => {
           <div className="row">
           </div>
           <div className="row">
-            <div className="col-md-6">
+            <div className="col-md-12">
               <div className="row">
                 <div className="col-md-3">
                   <label className="form-label">Laptop Brand</label>
                   <Field as="select" name="lapName" className="form-control">
                     <option value="" disabled>
-                      Select a brand
+                     Company name
                     </option>
                     {lapBrand.map((brand) => (
                       <option key={brand} value={brand}>
@@ -228,7 +230,7 @@ const LaptopRegistration = () => {
                     className="form-control"
                   >
                     <option value="" disabled>
-                      Select an Operating System
+                     Operating System
                     </option>
                     {operatingSystems.map((os, index) => (
                       <option key={index} value={os}>
@@ -254,7 +256,7 @@ const LaptopRegistration = () => {
                         className="form-control"
                       >
                         <option value="" disabled>
-                          Select a CPU Type
+                          CPU Type
                         </option>
                         {cpuTypes.map((cpuType, index) => (
                           <option key={index} value={cpuType}>
@@ -276,7 +278,7 @@ const LaptopRegistration = () => {
                         className="form-control"
                       >
                         <option value="" disabled>
-                          Select RAM Size
+                          RAM Size
                         </option>
                         {ramSizes.map((ramSize, index) => (
                           <option key={index} value={ramSize}>
